@@ -86,3 +86,5 @@ gem 'devise-i18n'
 gem 'irb', '>= 1.12.0', require: false, platforms: [:ruby] unless RUBY_PLATFORM =~ /mingw|mswin/
 
 gem 'nokogiri', '1.18.10'
+
+gem 'bootstrap', '~> 5.3.0'
