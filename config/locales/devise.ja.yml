@@ -8,6 +8,7 @@ ja:
           attributes:
             email:
               blank: "Eメールを入力してください。"
+              taken: "このEメールは既に登録されています。"
             password:
               blank: "パスワードを入力してください。"
             name:
