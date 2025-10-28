@@ -23,6 +23,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
+    # 閲覧数を増やす
+    @post.increment!(:view_count)
   end
 
   def edit
