@@ -21,10 +21,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new
-    @comments = @post.comments.page(params[:page]).per(7).reverse_order
-    # 閲覧数を増やす
+  # 閲覧数を増やす
     @post.increment!(:view_count)
+    @comment = Comment.new
+    @comments = @post.comments.page(params[:page]).per(7).reverse_order 
   end
 
   def edit
