@@ -8,22 +8,30 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).per(8).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
-    @current_entry = Entry.where(user_id: current_user.id)
-    @another_entry = Entry.where(user_id: @user.id)
-    unless @user.id == current_user.id
-      @current_entry.each do |current|
-       @another_entry.each do |another|
-         if current.room_id == another.room_id then
-           @is_room_id = true
-           @room_id = current.room_id
+
+    # 相互フォロー判定
+    @is_mutual_forrow = current_user.following_user.include?(@user) && 
+                        @user.following_user.include?(current_user)
+    # DM機能
+    if @is_mutual_follow
+      @current_entry = Entry.where(user_id: current_user.id)
+      @another_entry = Entry.where(user_id: @user.id)
+      unless @user.id == current_user.id
+        @current_entry.each do |current|
+         @another_entry.each do |another|
+           if current.room_id == another.room_id then
+             @is_room_id = true
+             @room_id = current.room_id
+           end
          end
-       end
+        end
+        if @is_room_id
+        else
+          @room = Room.new
+          @entry = Entry.new
+        end
       end
-      if @is_room_id
-      else
-        @room = Room.new
-        @entry = Entry.new
-      end
+      @message = Message.new
     end
   end
 
