@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @follower_users = @user.follower_user
 
     # 相互フォロー判定
-    @is_mutual_forrow = current_user.following_user.include?(@user) && 
+    @is_mutual_follow = current_user.following_user.include?(@user) && 
                         @user.following_user.include?(current_user)
     # DM機能
     if @is_mutual_follow
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
            end
          end
         end
-        if @is_room_id
+        unless @is_room_id
         else
           @room = Room.new
           @entry = Entry.new

@@ -35,6 +35,10 @@
         <h6>フォロワー<%= @follower_users.count %></h6>
       <% end %>
     </div>
+    <% if @is_mutual_follow %>
+      <!%-- ＤＭフォームを表示 -->
+      <% = form_with(model: @message, url: messages_path, local: true) do |f| %>
+        
     <div class="row mt-5 index-left w-100">
       <% @posts.each do |post| %>
         <div class="one-post col-sm-3 mb-3">
