@@ -1,0 +1,11 @@
+<div class ="container">
+ <div class="row">
+  <% @entries.each do |e| %>
+    <% if @my_account!=e.user.id %>
+       <h4><strong><%= e.user.name %>さんとのメッセージ</strong></h4>
+    <% end %>
+  <% end %>
+ <div class="row my-3">
+  <%= link_to"Usersページに戻る", users_path, class:"btn btn-secondary btn-sm" %>
+ </div>
+ 
