@@ -24,7 +24,7 @@
   
   <div class="row">
   <%= form_for @message do |f| %>
-    <%= f.text_field :message,placeholder: "メッセージを入力してください", size:50, class: "form-text-field" %>
+    <%= f.text_field :content, placeholder: "メッセージを入力してください", size:50, class: "form-text-field" %>
        <%= f.hidden_field :room_id,value: @room.id %>
        <%= f.submit "送信", class: "btn btn-success" %>
     <% end %>
