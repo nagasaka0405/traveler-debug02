@@ -31,12 +31,10 @@ class UsersController < ApplicationController
           @room = Room.new
           @entry = Entry.new
         end
-      end
       
-      @message = Message.new if @is_mutual_follow
+        @message = Message.new if @is_mutual_follow
     end
   end
-
   def edit
     @user = User.find(params[:id])
   end
