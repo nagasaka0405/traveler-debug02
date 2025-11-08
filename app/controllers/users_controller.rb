@@ -13,11 +13,12 @@ class UsersController < ApplicationController
     @is_mutual_follow = current_user.following_user.include?(@user) && 
                         @user.following_user.include?(current_user)
     # DM機能
-    if @is_mutual_follow
+    if @is_mutual_follow && @user.id != current_user.id
       @current_entry = Entry.where(user_id: current_user.id)
       @another_entry = Entry.where(user_id: @user.id)
-      unless @user.id == current_user.id
-        @current_entry.each do |current|
+      @is_room_id = false
+      
+      @current_entry.each do |current|
          @another_entry.each do |another|
            if current.room_id == another.room_id then
              @is_room_id = true
@@ -25,13 +26,14 @@ class UsersController < ApplicationController
            end
          end
         end
+        
         unless @is_room_id
-        else
           @room = Room.new
           @entry = Entry.new
         end
       end
-      @message = Message.new
+      
+      @message = Message.new if @is_mutual_follow
     end
   end
 
