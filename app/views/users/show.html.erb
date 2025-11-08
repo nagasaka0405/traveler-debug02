@@ -1,3 +1,7 @@
+<%= debug current_user.following_user %>
+<%= debug @user.following_user %>
+<%= debug @is_mutual_follow %>
+
 <div class="cover-user-show">
   <div class="container d-flex flex-column align-items-center">
     <div class="row mt-5">
@@ -35,7 +39,7 @@
         <h6>フォロワー<%= @follower_users.count %></h6>
       <% end %>
     </div>
-    <% if @is_mutual_follow && @user.id != current_user.id %>
+    <% if @is_mutual_follow  %>
       <%= link_to "DMを送る", room_path(@room_id), class: "btn btn-primary" if@room_id.present? %>
       <!-- ＤＭフォームを表示 -->
       <%= form_with(model: @message, url: messages_path, local: true) do |f| %>
