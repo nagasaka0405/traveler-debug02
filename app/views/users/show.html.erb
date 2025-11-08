@@ -40,7 +40,7 @@
       <% end %>
     </div>
     <% if @is_mutual_follow  %>
-      <%= link_to "DMを送る", room_path(@room_id), class: "btn btn-primary" if@room_id.present? %>
+      <%= link_to "DMを送る", room_path(@room_id), class: "btn btn-primary" if @room_id.present? %>
       <!-- ＤＭフォームを表示 -->
       <%= form_with(model: @message, url: messages_path, local: true) do |f| %>
         <%= f.hidden_field :room_id, value: @room_id||@room&.id %>

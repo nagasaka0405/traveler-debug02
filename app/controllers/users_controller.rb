@@ -28,8 +28,9 @@ class UsersController < ApplicationController
         end
         
         unless @is_room_id
-          @room = Room.new
-          @entry = Entry.new
+          @room = Room.create
+          Entry.create(user_id: current_user.id, room_id: @room.id)
+          Entry.create(user_id: @user.id, room_id: @room.id)
           @room_id = @room.id
         end
       
