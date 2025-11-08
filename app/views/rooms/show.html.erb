@@ -5,6 +5,7 @@
          <h4><strong><%= e.user.name %>さんとのメッセージ</strong></h4>
       <% end %>
     <% end %>
+  </div>
   <div class="row my-3">
     <%= link_to"Usersページに戻る", users_path, class:"btn btn-secondary btn-sm" %>
   </div>
@@ -12,7 +13,7 @@
   <div class="row">
     <table class="table table-hover">
     <% if @messages.present? %>
-      <% @messages.each do =|m| %>
+      <% @messages.each do |m| %>
         <tr>
             <td><%= m.user.name %></td>
             <td><%= m.message %></td>
@@ -23,7 +24,7 @@
   </div>
   <div class="row">
   <%= form_for @message do |f| %>
-    <%= f.text_field :content, placeholder: "メッセージを入力してください", size:50, class: "form-text-field" %>
+    <%= f.text_field :message, placeholder: "メッセージを入力してください", size:50, class: "form-text-field" %>
        <%= f.hidden_field :room_id,value: @room.id %>
        <%= f.submit "送信", class: "btn btn-success" %>
     <% end %>
