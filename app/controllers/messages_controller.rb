@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
             redirect_to room_path(message.room)
         else
             redirect_back(fallback_location: root_path)
-        
+        end
     end 
 
     private
