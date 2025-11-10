@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
     before_action :authenticate_user!, only: [:create]
 
     def create
-        message = Message.new(message_params)
+         = Message.new(message_params)
         message.user_id = current_user.id
         if message.save
             redirect_to room_path(message.room)
